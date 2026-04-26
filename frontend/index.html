@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Safe Banking System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Safe Banking System</h1>
+
+<h2>Register</h2>
+<input id="regUser" placeholder="Username">
+<input id="regPass" type="password" placeholder="Password">
+<button onclick="register()">Register</button>
+
+<h2>Login</h2>
+<input id="logUser" placeholder="Username">
+<input id="logPass" type="password" placeholder="Password">
+<button onclick="login()">Login</button>
+
+<h2>Transaction</h2>
+<input id="receiver" placeholder="Receiver Address">
+<input id="amount" placeholder="Amount">
+<button onclick="sendTransaction()">Send Secure Transaction</button>
+
+<p id="output"></p>
+
+<script src="script.js"></script>
+
+</body>
+</html>

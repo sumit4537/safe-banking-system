@@ -1,0 +1,36 @@
+const express = require("express");
+const router = express.Router();
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
+let users = [];
+
+// Register
+router.post("/register", async (req, res) => {
+    const { username, password } = req.body;
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    users.push({ username, password: hashedPassword });
+
+    res.json({ message: "User registered securely" });
+});
+
+// Login
+router.post("/login", async (req, res) => {
+    const { username, password } = req.body;
+
+    const user = users.find(u => u.username === username);
+
+    if (!user) return res.status(400).send("User not found");
+
+    const valid = await bcrypt.compare(password, user.password);
+
+    if (!valid) return res.status(400).send("Invalid password");
+
+    const token = jwt.sign({ username }, "SECRET_KEY");
+
+    res.json({ token });
+});
+
+module.exports = router;
